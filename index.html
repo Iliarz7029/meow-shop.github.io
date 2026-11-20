@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اکانت جمنای 6 ماهه | میو 🐾</title>
+
+  <!-- فونت فارسی وزیرمتن از گوگل فونت -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- کتابخانه Tailwind CSS برای چیدمان واکنش‌گرا و مدرن -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* =========================================
+       تنظیمات پایه، فونت و پالت رنگی گربه‌ای
+       ========================================= */
+    :root {
+      --bg-cream: #fff8f1;
+      --bg-peach: #ffeadb;
+      --bg-blush: #fce7f3;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --cat-orange: #fb923c;
+      --cat-coral: #f97316;
+      --cat-pink: #f472b6;
+      --cat-soft-pink: #fbcfe8;
+      --text-cocoa: #432818;
+      --text-muted: #7c5a4c;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+      color: var(--text-cocoa);
+      background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-peach) 55%, var(--bg-blush) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    /* =========================================
+       پس‌زمینه متحرک با الگوی ردپای پنجه گربه
+       ========================================= */
+    .paw-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.45;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23fb923c' fill-opacity='0.22'%3E%3Cellipse cx='30' cy='38' rx='7' ry='6'/%3E%3Ccircle cx='21' cy='28' r='3.2'/%3E%3Ccircle cx='28' cy='24' r='3.3'/%3E%3Ccircle cx='36' cy='25' r='3.2'/%3E%3Ccircle cx='41' cy='31' r='2.9'/%3E%3C/g%3E%3Cg fill='%23f472b6' fill-opacity='0.20' transform='translate(58, 56) rotate(-18 30 35)'%3E%3Cellipse cx='30' cy='38' rx='7' ry='6'/%3E%3Ccircle cx='21' cy='28' r='3.2'/%3E%3Ccircle cx='28' cy='24' r='3.3'/%3E%3Ccircle cx='36' cy='25' r='3.2'/%3E%3Ccircle cx='41' cy='31' r='2.9'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 130px 130px;
+      animation: driftPaws 34s linear infinite;
+    }
+
+    @keyframes driftPaws {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 130px -130px;
+      }
+    }
+
+    /* =========================================
+       کارت اصلی با گوش‌های گربه‌ای CSS در بالا
+       ========================================= */
+    .cat-card-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    .cat-card {
+      position: relative;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2.5px solid #fed7aa;
+      border-radius: 2.25rem;
+      box-shadow:
+        0 20px 50px -15px rgba(249, 115, 22, 0.18),
+        0 8px 20px -8px rgba(244, 114, 182, 0.14),
+        inset 0 2px 0 rgba(255, 255, 255, 0.9);
+      z-index: 10;
+    }
+
+    /* گوش‌های گربه‌ای CSS چسبیده به دو طرف بالای کارت */
+    .card-ear {
+      position: absolute;
+      top: -22px;
+      width: 48px;
+      height: 44px;
+      background: #fffdfb;
+      border: 2.5px solid #fed7aa;
+      border-bottom: none;
+      border-radius: 75% 75% 15% 15% / 95% 95% 15% 15%;
+      z-index: 5;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 -4px 12px rgba(249, 115, 22, 0.08);
+    }
+
+    @media (min-width: 640px) {
+      .card-ear {
+        top: -26px;
+        width: 56px;
+        height: 50px;
+      }
+    }
+
+    .card-ear::after {
+      content: "";
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 56%;
+      height: 60%;
+      background: linear-gradient(180deg, #fbcfe8 0%, #fda4af 100%);
+      border-radius: 75% 75% 20% 20% / 90% 90% 20% 20%;
+    }
+
+    .card-ear-right {
+      right: 22px;
+      transform: rotate(15deg);
+    }
+
+    .card-ear-left {
+      left: 22px;
+      transform: rotate(-15deg);
+    }
+
+    .cat-card-wrapper:hover .card-ear-right {
+      transform: rotate(20deg) translateY(-2px);
+    }
+
+    .cat-card-wrapper:hover .card-ear-left {
+      transform: rotate(-20deg) translateY(-2px);
+    }
+
+    /* =========================================
+       دم گربه‌ای متحرک پشت کارت
+       ========================================= */
+    .cat-tail {
+      position: absolute;
+      bottom: -8px;
+      left: -34px;
+      width: 78px;
+      height: 92px;
+      z-index: 1;
+      transform-origin: 60px 76px;
+      animation: tailWag 3.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes tailWag {
+      0%, 100% {
+        transform: rotate(-6deg);
+      }
+      50% {
+        transform: rotate(10deg);
+      }
+    }
+
+    /* =========================================
+       انیمیشن‌های گربه تعاملی SVG بالای کارت
+       ========================================= */
+    .interactive-cat-container {
+      position: absolute;
+      top: -86px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 146px;
+      height: 112px;
+      z-index: 20;
+      cursor: pointer;
+      filter: drop-shadow(0 8px 14px rgba(234, 88, 12, 0.14));
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .interactive-cat-container:hover {
+      transform: translateX(-50%) translateY(-4px) scale(1.03);
+    }
+
+    .interactive-cat-container:active {
+      transform: translateX(-50%) translateY(1px) scale(0.97);
+    }
+
+    /* چشمک زدن خودکار و نرم گربه */
+    .cat-eye-group {
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: catBlink 4.6s infinite;
+    }
+
+    @keyframes catBlink {
+      0%, 92%, 100% {
+        transform: scaleY(1);
+      }
+      96% {
+        transform: scaleY(0.08);
+      }
+    }
+
+    /* تکان خوردن گوش‌های گربه SVG */
+    .svg-ear-left {
+      transform-origin: 48px 34px;
+      transition: transform 0.2s ease;
+    }
+
+    .svg-ear-right {
+      transform-origin: 112px 34px;
+      transition: transform 0.2s ease;
+    }
+
+    .ear-twitch-left {
+      animation: twitchLeft 0.45s ease-in-out;
+    }
+
+    .ear-twitch-right {
+      animation: twitchRight 0.45s ease-in-out;
+    }
+
+    @keyframes twitchLeft {
+      0%, 100% { transform: rotate(0deg); }
+      30% { transform: rotate(-14deg); }
+      65% { transform: rotate(6deg); }
+    }
+
+    @keyframes twitchRight {
+      0%, 100% { transform: rotate(0deg); }
+      30% { transform: rotate(14deg); }
+      65% { transform: rotate(-6deg); }
+    }
+
+    /* حالت خوشحالی چشم‌ها هنگام کلیک روی گربه */
+    .cat-happy .cat-eyes-open {
+      opacity: 0;
+    }
+
+    .cat-happy .cat-eyes-happy {
+      opacity: 1;
+    }
+
+    .cat-eyes-happy {
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .cat-eyes-open {
+      transition: opacity 0.15s ease;
+    }
+
+    /* =========================================
+       حباب‌های شناور میو و ردپا هنگام کلیک
+       ========================================= */
+    .floating-meow {
+      position: fixed;
+      pointer-events: none;
+      z-index: 60;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #9a3412;
+      background: rgba(255, 255, 255, 0.94);
+      border: 2px solid #fdba74;
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.18);
+      white-space: nowrap;
+      animation: floatUpMeow 1.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .floating-paw {
+      position: fixed;
+      pointer-events: none;
+      z-index: 55;
+      width: 26px;
+      height: 26px;
+      animation: floatUpPaw 1.3s ease-out forwards;
+    }
+
+    @keyframes floatUpMeow {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.6) rotate(var(--rot, 0deg));
+      }
+      18% {
+        opacity: 1;
+        transform: translate(-50%, -18px) scale(1.06) rotate(var(--rot, 0deg));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--drift, 0px)), -105px) scale(0.92) rotate(var(--rot, 0deg));
+      }
+    }
+
+    @keyframes floatUpPaw {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.5) rotate(var(--rot, 0deg));
+      }
+      25% {
+        opacity: 0.9;
+        transform: translate(-50%, -16px) scale(1) rotate(var(--rot, 0deg));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--drift, 0px)), -85px) scale(0.8) rotate(var(--rot, 0deg));
+      }
+    }
+
+    /* =========================================
+       تولتیپ کپی شدن آیدی تلگرام
+       ========================================= */
+    .copy-tooltip {
+      opacity: 0;
+      transform: translate(-50%, 8px) scale(0.92);
+      pointer-events: none;
+      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .copy-tooltip.show {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    /* دکمه تلگرام با درخشش نرم */
+    .telegram-btn {
+      background: linear-gradient(135deg, #fb923c 0%, #f472b6 100%);
+      box-shadow: 0 10px 24px -6px rgba(249, 115, 22, 0.42);
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+    }
+
+    .telegram-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -6px rgba(244, 114, 182, 0.48);
+    }
+
+    .telegram-btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+  </style>
+</head>
+<body class="relative flex items-center justify-center min-h-screen px-4 pt-28 pb-12 sm:px-6">
+
+  <!-- پس‌زمینه متحرک ردپای گربه -->
+  <div class="paw-bg" aria-hidden="true"></div>
+
+  <!-- دکمه زنگوله صدا (قطع و وصل کردن صدای میو) در گوشه بالا -->
+  <button
+    id="soundToggleBtn"
+    type="button"
+    aria-label="تغییر وضعیت صدای میو"
+    title="روشن/خاموش کردن صدای میو"
+    class="fixed top-4 left-4 z-40 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-md border-2 border-orange-200 px-3.5 py-2 text-xs sm:text-sm font-bold text-amber-900 shadow-md hover:border-orange-300 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+  >
+    <!-- آیکون زنگوله قلاده گربه -->
+    <svg id="bellIconOn" class="w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <circle cx="12" cy="13" r="8" fill="#FBBF24" stroke="#B45309" stroke-width="1.6"/>
+      <path d="M5 13h14" stroke="#B45309" stroke-width="1.4" stroke-linecap="round"/>
+      <circle cx="12" cy="15.5" r="1.6" fill="#B45309"/>
+      <path d="M12 17v3" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M9.5 5.2a2.5 2.5 0 0 1 5 0" fill="none" stroke="#B45309" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <svg id="bellIconOff" class="w-5 h-5 text-stone-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="13" r="7.5" fill="#E7E5E4" stroke="#78716C"/>
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#EF4444" stroke-width="2.2"/>
+    </svg>
+    <span id="soundStatusText">صدای میو</span>
+  </button>
+
+  <!-- کانتینر مرکزی کارت گربه‌ای -->
+  <main class="cat-card-wrapper w-full max-w-md mx-auto">
+
+    <!-- دم گربه که از پشت پایین کارت تکان می‌خورد -->
+    <svg class="cat-tail hidden sm:block" viewBox="0 0 90 100" fill="none" aria-hidden="true">
+      <path
+        d="M68 84 C 30 88, 14 66, 22 40 C 27 22, 42 18, 36 8"
+        stroke="#FDBA74"
+        stroke-width="14"
+        stroke-linecap="round"
+      />
+      <path
+        d="M68 84 C 30 88, 14 66, 22 40 C 27 22, 42 18, 36 8"
+        stroke="#FB923C"
+        stroke-width="14"
+        stroke-linecap="round"
+        stroke-dasharray="10 14"
+        opacity="0.45"
+      />
+    </svg>
+
+    <!-- گوش‌های CSS چسبیده به دو گوشه بالای کارت -->
+    <div class="card-ear card-ear-right" aria-hidden="true"></div>
+    <div class="card-ear card-ear-left" aria-hidden="true"></div>
+
+    <!-- گربه بامزه و تعاملی SVG نشسته روی لبه بالای کارت -->
+    <div
+      id="interactiveCat"
+      class="interactive-cat-container"
+      role="button"
+      tabindex="0"
+      aria-label="گربه بامزه - برای میو کردن کلیک کنید"
+      title="نازم کن! میو 🐾"
+    >
+      <svg viewBox="0 0 160 122" class="w-full h-full overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- گوش چپ گربه -->
+        <g id="svgEarLeft" class="svg-ear-left">
+          <path d="M40 52 L28 14 C27 9 33 6 38 9 L66 30 Z" fill="#FDBA74" stroke="#9A3412" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M41 44 L34 19 L57 33 Z" fill="#FBCFE8"/>
+        </g>
+
+        <!-- گوش راست گربه -->
+        <g id="svgEarRight" class="svg-ear-right">
+          <path d="M120 52 L132 14 C133 9 127 6 122 9 L94 30 Z" fill="#FDBA74" stroke="#9A3412" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M119 44 L126 19 L103 33 Z" fill="#FBCFE8"/>
+        </g>
+
+        <!-- سر گرد و نرم گربه -->
+        <ellipse cx="80" cy="64" rx="46" ry="38" fill="#FFEDD5" stroke="#9A3412" stroke-width="2.6"/>
+
+        <!-- خط‌های نارنجی پیشانی (طرح گربه تابی) -->
+        <path d="M80 27 V38" stroke="#FB923C" stroke-width="3.6" stroke-linecap="round"/>
+        <path d="M71 29 L73 37" stroke="#FB923C" stroke-width="3" stroke-linecap="round"/>
+        <path d="M89 29 L87 37" stroke="#FB923C" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- لپ‌های صورتی خجالتی -->
+        <ellipse cx="48" cy="70" rx="8" ry="4.5" fill="#F9A8D4" opacity="0.65"/>
+        <ellipse cx="112" cy="70" rx="8" ry="4.5" fill="#F9A8D4" opacity="0.65"/>
+
+        <!-- چشم‌های باز (دنبال‌کننده نشانگر ماوس و دارای چشمک) -->
+        <g class="cat-eyes-open">
+          <!-- چشم چپ -->
+          <g class="cat-eye-group">
+            <ellipse cx="61" cy="59" rx="9" ry="9.5" fill="#FFFFFF" stroke="#9A3412" stroke-width="2.2"/>
+            <g id="pupilLeft">
+              <circle cx="61" cy="59.5" r="5.3" fill="#432818"/>
+              <circle cx="59" cy="57.2" r="2" fill="#FFFFFF"/>
+              <circle cx="63.3" cy="61.8" r="1" fill="#FFFFFF"/>
+            </g>
+          </g>
+          <!-- چشم راست -->
+          <g class="cat-eye-group">
+            <ellipse cx="99" cy="59" rx="9" ry="9.5" fill="#FFFFFF" stroke="#9A3412" stroke-width="2.2"/>
+            <g id="pupilRight">
+              <circle cx="99" cy="59.5" r="5.3" fill="#432818"/>
+              <circle cx="97" cy="57.2" r="2" fill="#FFFFFF"/>
+              <circle cx="101.3" cy="61.8" r="1" fill="#FFFFFF"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- چشم‌های خندان هنگام نوازش/کلیک -->
+        <g class="cat-eyes-happy" stroke="#432818" stroke-width="3" stroke-linecap="round" fill="none">
+          <path d="M53 60 Q61 51 69 60"/>
+          <path d="M91 60 Q99 51 107 60"/>
+        </g>
+
+        <!-- بینی صورتی کوچک و دهان گربه‌ای (:3) -->
+        <path d="M76.5 67.5 Q80 65 83.5 67.5 L80 71.5 Z" fill="#F472B6"/>
+        <path d="M80 71.5 C80 76 74 78 71 74.5 M80 71.5 C80 76 86 78 89 74.5" stroke="#9A3412" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+        <!-- سبیل‌های ظریف گربه -->
+        <g stroke="#9A3412" stroke-width="1.8" stroke-linecap="round" opacity="0.75">
+          <line x1="25" y1="63" x2="41" y2="65"/>
+          <line x1="24" y1="71" x2="40" y2="70"/>
+          <line x1="135" y1="63" x2="119" y2="65"/>
+          <line x1="136" y1="71" x2="120" y2="70"/>
+        </g>
+
+        <!-- دو پنجه کوچک که روی لبه بالای کارت قرار گرفته‌اند -->
+        <g>
+          <ellipse cx="47" cy="97" rx="13" ry="9" fill="#FFEDD5" stroke="#9A3412" stroke-width="2.4"/>
+          <line x1="43" y1="98" x2="43" y2="103" stroke="#9A3412" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="49" y1="98" x2="49" y2="103" stroke="#9A3412" stroke-width="1.8" stroke-linecap="round"/>
+
+          <ellipse cx="113" cy="97" rx="13" ry="9" fill="#FFEDD5" stroke="#9A3412" stroke-width="2.4"/>
+          <line x1="111" y1="98" x2="111" y2="103" stroke="#9A3412" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="117" y1="98" x2="117" y2="103" stroke="#9A3412" stroke-width="1.8" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- بدنه اصلی کارت (تنها شامل متن‌های درخواستی و آیدی تلگرام) -->
+    <section class="cat-card px-6 pt-12 pb-9 sm:px-9 sm:pt-14 sm:pb-10 text-center">
+
+      <!-- خط تزئینی کوچک پنجه بالای عنوان -->
+      <div class="flex items-center justify-center gap-2 mb-4 opacity-80" aria-hidden="true">
+        <span class="h-0.5 w-8 rounded-full bg-orange-200"></span>
+        <svg class="w-5 h-5 text-orange-400" viewBox="0 0 24 24" fill="currentColor">
+          <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8"/>
+          <circle cx="6.8" cy="10.5" r="2"/>
+          <circle cx="10.3" cy="8" r="2.1"/>
+          <circle cx="13.9" cy="8" r="2.1"/>
+          <circle cx="17.2" cy="10.5" r="2"/>
+        </svg>
+        <span class="h-0.5 w-8 rounded-full bg-pink-200"></span>
+      </div>
+
+      <!-- عنوان اصلی دقیقا مطابق درخواست کاربر -->
+      <h1 class="text-2xl sm:text-3xl font-black leading-snug tracking-tight text-amber-950 mb-4">
+        اکانت جمنای 6 ماهه 800 تومن
+      </h1>
+
+      <!-- زیرعنوان دقیقا مطابق درخواست کاربر -->
+      <p class="text-base sm:text-lg font-medium text-amber-900/80 leading-relaxed mb-8">
+        برای خرید به ایدی زیر در تلگرام میو کنید
+      </p>
+
+      <!-- بخش دکمه آیدی تلگرام و دکمه کپی آیدی -->
+      <!-- راهنما: برای تغییر آیدی تلگرام کافی است مقدار TELEGRAM_ID را در بخش اسکریپت پایین فایل عوض کنید -->
+      <div class="relative flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+
+        <!-- تولتیپ کپی شدن آیدی -->
+        <div
+          id="copyTooltip"
+          role="status"
+          aria-live="polite"
+          class="copy-tooltip absolute -top-12 left-1/2 z-30 bg-amber-950 text-amber-50 text-xs sm:text-sm font-bold px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap"
+        >
+          کپی شد! میو 🐾
+        </div>
+
+        <!-- دکمه اصلی لینک به تلگرام -->
+        <a
+          id="telegramLink"
+          href="https://t.me/YourTelegramID"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="telegram-btn flex-1 inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-white font-extrabold text-base sm:text-lg min-h-[54px]"
+        >
+          <!-- آیکون تلگرام -->
+          <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M21.6 3.5a1.5 1.5 0 0 0-1.56-.2L2.9 10.1a1.45 1.45 0 0 0 .08 2.72l4.48 1.5 1.72 5.26a1.1 1.1 0 0 0 1.83.42l2.48-2.42 4.38 3.22a1.45 1.45 0 0 0 2.28-.88l2.22-14.94a1.5 1.5 0 0 0-.79-1.48ZM9.65 14.3l8.18-6.48-6.36 7.82-.32 2.88-1.5-4.22Z"/>
+          </svg>
+          <!-- نمایش آیدی با جهت چپ‌به‌راست تا علامت @ درست نمایش داده شود -->
+          <span id="telegramIdText" dir="ltr" class="tracking-wide">@YourTelegramID</span>
+        </a>
+
+        <!-- دکمه کپی کردن آیدی تلگرام -->
+        <button
+          id="copyIdBtn"
+          type="button"
+          aria-label="کپی کردن آیدی تلگرام"
+          title="کپی آیدی"
+          class="inline-flex items-center justify-center gap-2 rounded-2xl bg-orange-50 hover:bg-orange-100 active:scale-95 border-2 border-orange-200 px-4 py-3.5 text-amber-900 font-bold text-sm sm:text-base min-h-[54px] transition-all cursor-pointer shrink-0"
+        >
+          <svg id="copyIcon" class="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="3" ry="3"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <svg id="checkIcon" class="w-5 h-5 text-emerald-600 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          <span>کپی</span>
+        </button>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /**
+     * ============================================================
+     * تنظیمات آیدی تلگرام (برای تغییر آیدی فقط همین خط را ویرایش کنید)
+     * مثال: اگر آیدی شما @my_cat_shop است، بنویسید "my_cat_shop"
+     * ============================================================
+     */
+    const TELEGRAM_ID = "meowwshopp";
+
+    // مقداردهی خودکار لینک و متن آیدی تلگرام از تنظیمات بالا
+    const cleanId = TELEGRAM_ID.replace(/^@+/, "");
+    const formattedId = "@" + cleanId;
+    const telegramLinkEl = document.getElementById("telegramLink");
+    const telegramIdTextEl = document.getElementById("telegramIdText");
+
+    if (telegramLinkEl && telegramIdTextEl) {
+      telegramLinkEl.href = `https://t.me/${cleanId}`;
+      telegramIdTextEl.textContent = formattedId;
+    }
+
+    /**
+     * ============================================================
+     * مدیریت صدای میو با Web Audio API (بدون نیاز به فایل صوتی خارجی)
+     * ============================================================
+     */
+    let audioCtx = null;
+    let isSoundEnabled = true;
+
+    const soundToggleBtn = document.getElementById("soundToggleBtn");
+    const bellIconOn = document.getElementById("bellIconOn");
+    const bellIconOff = document.getElementById("bellIconOff");
+    const soundStatusText = document.getElementById("soundStatusText");
+
+    // تغییر وضعیت صدا (روشن/خاموش)
+    function updateSoundUI() {
+      if (isSoundEnabled) {
+        bellIconOn.classList.remove("hidden");
+        bellIconOff.classList.add("hidden");
+        soundStatusText.textContent = "صدای میو";
+        soundToggleBtn.classList.remove("opacity-75");
+      } else {
+        bellIconOn.classList.add("hidden");
+        bellIconOff.classList.remove("hidden");
+        soundStatusText.textContent = "بی‌صدا";
+        soundToggleBtn.classList.add("opacity-75");
+      }
+    }
+
+    soundToggleBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      isSoundEnabled = !isSoundEnabled;
+      updateSoundUI();
+      if (isSoundEnabled) {
+        playMeowChime();
+      }
+    });
+
+    /**
+     * تولید صدای میوی نرم، فانتزی و دلنشین با ترکیب نوسان‌ساز و فیلتر
+     */
+    function playMeowChime() {
+      if (!isSoundEnabled) return;
+
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+
+        if (!audioCtx) {
+          audioCtx = new AudioContextClass();
+        }
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+
+        const now = audioCtx.currentTime;
+        // تغییر تصادفی ملایم در زیر و بمی صدا تا هر میو طبیعی باشد
+        const baseFreq = 470 + Math.random() * 110;
+
+        // نوسان‌ساز اصلی (موج مثلثی برای نرمی صدا)
+        const osc1 = audioCtx.createOscillator();
+        osc1.type = "triangle";
+
+        // نوسان‌ساز دوم (هارمونیک لطیف برای حس زنگوله‌ای)
+        const osc2 = audioCtx.createOscillator();
+        osc2.type = "sine";
+
+        // فیلتر پایین‌گذر برای شبیه‌سازی لحن "می-او"
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = "lowpass";
+        filter.Q.setValueAtTime(3.2, now);
+        filter.frequency.setValueAtTime(1100, now);
+        filter.frequency.exponentialRampToValueAtTime(2200, now + 0.11);
+        filter.frequency.exponentialRampToValueAtTime(850, now + 0.42);
+
+        // کنترل حجم صدا (شروع و پایان نرم بدون کلیک صوتی)
+        const masterGain = audioCtx.createGain();
+        masterGain.gain.setValueAtTime(0.001, now);
+        masterGain.gain.linearRampToValueAtTime(0.14, now + 0.05);
+        masterGain.gain.exponentialRampToValueAtTime(0.09, now + 0.24);
+        masterGain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+        const osc2Gain = audioCtx.createGain();
+        osc2Gain.gain.setValueAtTime(0.04, now);
+
+        // منحنی فرکانس میو (صعودی و سپس نزولی)
+        osc1.frequency.setValueAtTime(baseFreq * 0.92, now);
+        osc1.frequency.exponentialRampToValueAtTime(baseFreq * 1.42, now + 0.10);
+        osc1.frequency.exponentialRampToValueAtTime(baseFreq * 1.12, now + 0.26);
+        osc1.frequency.exponentialRampToValueAtTime(baseFreq * 0.80, now + 0.44);
+
+        osc2.frequency.setValueAtTime(baseFreq * 1.84, now);
+        osc2.frequency.exponentialRampToValueAtTime(baseFreq * 2.84, now + 0.10);
+        osc2.frequency.exponentialRampToValueAtTime(baseFreq * 1.60, now + 0.44);
+
+        osc1.connect(filter);
+        osc2.connect(osc2Gain);
+        osc2Gain.connect(filter);
+        filter.connect(masterGain);
+        masterGain.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.46);
+        osc2.stop(now + 0.46);
+      } catch (error) {
+        // در صورت محدودیت مرورگر در پخش صدا، خطایی به کاربر نشان داده نمی‌شود
+        console.warn("Audio playback skipped:", error);
+      }
+    }
+
+    /**
+     * ============================================================
+     * تعامل گربه SVG: دنبال کردن نشانگر ماوس/لمس و تکان دادن گوش‌ها
+     * ============================================================
+     */
+    const interactiveCat = document.getElementById("interactiveCat");
+    const pupilLeft = document.getElementById("pupilLeft");
+    const pupilRight = document.getElementById("pupilRight");
+    const svgEarLeft = document.getElementById("svgEarLeft");
+    const svgEarRight = document.getElementById("svgEarRight");
+
+    // حرکت نرم مردمک چشم گربه به سمت موقعیت نشانگر
+    function moveCatEyes(clientX, clientY) {
+      if (!interactiveCat || !pupilLeft || !pupilRight) return;
+
+      const rect = interactiveCat.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const deltaX = clientX - centerX;
+      const deltaY = clientY - centerY;
+      const angle = Math.atan2(deltaY, deltaX);
+
+      // حداکثر جابه‌جایی مردمک در محدوده طبیعی چشم (3.2 پیکسل)
+      const distance = Math.min(3.2, Math.hypot(deltaX, deltaY) / 45);
+      const offsetX = Math.cos(angle) * distance;
+      const offsetY = Math.sin(angle) * distance;
+
+      pupilLeft.setAttribute("transform", `translate(${offsetX.toFixed(2)}, ${offsetY.toFixed(2)})`);
+      pupilRight.setAttribute("transform", `translate(${offsetX.toFixed(2)}, ${offsetY.toFixed(2)})`);
+    }
+
+    window.addEventListener("mousemove", (e) => {
+      moveCatEyes(e.clientX, e.clientY);
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (e.touches && e.touches.length > 0) {
+        moveCatEyes(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    // انیمیشن تکان خوردن گوش‌های گربه
+    function twitchEars(both = false) {
+      if (!svgEarLeft || !svgEarRight) return;
+
+      const triggerLeft = both || Math.random() < 0.5;
+      const triggerRight = both || !triggerLeft;
+
+      if (triggerLeft) {
+        svgEarLeft.classList.remove("ear-twitch-left");
+        void svgEarLeft.offsetWidth;
+        svgEarLeft.classList.add("ear-twitch-left");
+      }
+      if (triggerRight) {
+        svgEarRight.classList.remove("ear-twitch-right");
+        void svgEarRight.offsetWidth;
+        svgEarRight.classList.add("ear-twitch-right");
+      }
+    }
+
+    // تکان خوردن تصادفی گوش‌ها هر چند ثانیه برای حس زنده بودن
+    setInterval(() => {
+      if (document.visibilityState === "visible") {
+        twitchEars(false);
+      }
+    }, 5200);
+
+    // واکنش به رفتن ماوس روی گربه
+    interactiveCat.addEventListener("mouseenter", () => {
+      twitchEars(true);
+    });
+
+    // واکنش به کلیک یا لمس روی گربه (خوشحالی، میو، تکان گوش و حباب)
+    let happyTimeout = null;
+    function petTheCat(clientX, clientY) {
+      twitchEars(true);
+      playMeowChime();
+
+      interactiveCat.classList.add("cat-happy");
+      clearTimeout(happyTimeout);
+      happyTimeout = setTimeout(() => {
+        interactiveCat.classList.remove("cat-happy");
+      }, 650);
+
+      spawnMeowEffect(clientX, clientY - 12, true);
+    }
+
+    interactiveCat.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const rect = interactiveCat.getBoundingClientRect();
+      const x = event.clientX || rect.left + rect.width / 2;
+      const y = event.clientY || rect.top + 20;
+      petTheCat(x, y);
+    });
+
+    interactiveCat.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        const rect = interactiveCat.getBoundingClientRect();
+        petTheCat(rect.left + rect.width / 2, rect.top + 20);
+      }
+    });
+
+    /**
+     * ============================================================
+     * ایجاد حباب‌های شناور فارسی "میو!" و ردپای پنجه هنگام کلیک
+     * ============================================================
+     */
+    const MEOW_PHRASES = [
+      "میو! 🐾",
+      "میووو 🐱",
+      "خرخر 🧡",
+      "میو میو ✨",
+      "پُرپُر 🐾"
+    ];
+
+    function spawnMeowEffect(x, y, extraBurst = false) {
+      // ساخت حباب متنی میو
+      const bubble = document.createElement("div");
+      bubble.className = "floating-meow";
+      bubble.textContent = MEOW_PHRASES[Math.floor(Math.random() * MEOW_PHRASES.length)];
+
+      const randomDrift = (Math.random() - 0.5) * 44;
+      const randomRot = (Math.random() - 0.5) * 14;
+      bubble.style.left = `${x}px`;
+      bubble.style.top = `${y}px`;
+      bubble.style.setProperty("--drift", `${randomDrift}px`);
+      bubble.style.setProperty("--rot", `${randomRot}deg`);
+
+      document.body.appendChild(bubble);
+      setTimeout(() => bubble.remove(), 1500);
+
+      // ساخت ۱ یا ۲ ردپای پنجه کوچک در کنار حباب
+      const pawCount = extraBurst ? 2 : 1;
+      for (let i = 0; i < pawCount; i++) {
+        const paw = document.createElement("div");
+        paw.className = "floating-paw";
+        const pawColor = i % 2 === 0 ? "#FB923C" : "#F472B6";
+        paw.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="${pawColor}" width="100%" height="100%">
+            <ellipse cx="12" cy="15.5" rx="4.6" ry="3.8"/>
+            <circle cx="6.8" cy="10.5" r="2.1"/>
+            <circle cx="10.3" cy="8" r="2.2"/>
+            <circle cx="13.9" cy="8" r="2.2"/>
+            <circle cx="17.2" cy="10.5" r="2.1"/>
+          </svg>
+        `;
+
+        const offsetX = (Math.random() - 0.5) * 56;
+        const offsetY = (Math.random() - 0.5) * 24;
+        paw.style.left = `${x + offsetX}px`;
+        paw.style.top = `${y + offsetY}px`;
+        paw.style.setProperty("--drift", `${(Math.random() - 0.5) * 50}px`);
+        paw.style.setProperty("--rot", `${(Math.random() - 0.5) * 40}deg`);
+
+        document.body.appendChild(paw);
+        setTimeout(() => paw.remove(), 1350);
+      }
+    }
+
+    // کلیک در هر نقطه از صفحه باعث ظاهر شدن حباب میو و پنجه می‌شود
+    document.addEventListener("click", (event) => {
+      // جلوگیری از تداخل با دکمه صدا و دکمه کپی
+      if (event.target.closest("#soundToggleBtn") || event.target.closest("#copyIdBtn")) {
+        return;
+      }
+      spawnMeowEffect(event.clientX, event.clientY, false);
+    });
+
+    /**
+     * ============================================================
+     * کپی کردن آیدی تلگرام با سازگاری کامل (بدون استفاده از alert)
+     * ============================================================
+     */
+    const copyIdBtn = document.getElementById("copyIdBtn");
+    const copyTooltip = document.getElementById("copyTooltip");
+    const copyIcon = document.getElementById("copyIcon");
+    const checkIcon = document.getElementById("checkIcon");
+    let tooltipTimer = null;
+
+    function copyTextFallback(text) {
+      const tempTextarea = document.createElement("textarea");
+      tempTextarea.value = text;
+      tempTextarea.setAttribute("readonly", "");
+      tempTextarea.style.position = "fixed";
+      tempTextarea.style.opacity = "0";
+      tempTextarea.style.left = "-9999px";
+      document.body.appendChild(tempTextarea);
+      tempTextarea.select();
+      tempTextarea.setSelectionRange(0, text.length);
+
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } catch (err) {
+        copied = false;
+      }
+      document.body.removeChild(tempTextarea);
+      return copied;
+    }
+
+    copyIdBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      const success = copyTextFallback(formattedId);
+      if (success) {
+        playMeowChime();
+        twitchEars(true);
+
+        // نمایش آیکون تیک و تولتیپ «کپی شد! میو 🐾»
+        copyIcon.classList.add("hidden");
+        checkIcon.classList.remove("hidden");
+        copyTooltip.classList.add("show");
+
+        const rect = copyIdBtn.getBoundingClientRect();
+        spawnMeowEffect(rect.left + rect.width / 2, rect.top, false);
+
+        clearTimeout(tooltipTimer);
+        tooltipTimer = setTimeout(() => {
+          copyTooltip.classList.remove("show");
+          checkIcon.classList.add("hidden");
+          copyIcon.classList.remove("hidden");
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>
